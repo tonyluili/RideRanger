@@ -6,7 +6,7 @@ export default class Navbar extends Component {
       <div>
         <Link to = "/" >Home</Link>
         <Link to = "/map"> Map</Link>
-        <Link to = "/login">Login</Link>
+        <Link to = "/loginpage">Login Page</Link>
       </div>
       
     )
