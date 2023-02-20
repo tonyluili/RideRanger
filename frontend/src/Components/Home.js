@@ -2,7 +2,7 @@ import React from 'react'
 
 function Home() {
   return (
-    <div><h1>Ride Ranger</h1></div>
+    <div><h1 className ="homegreeting">Ride Ranger 🛴🗺️</h1></div>
   )
 }
 
