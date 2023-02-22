@@ -4,19 +4,29 @@ import Home from "./Components/Home";
 import Navbar from "./Components/Navbar";
 import Map from "./Components/Map";
 import LoginPage from "./Components/LoginPage";
-import React, { Component } from "react";
+import React, {useState } from "react";
 
-export default class App extends Component {
-  render() {
-    return (
-      <BrowserRouter>
-        <Navbar></Navbar>
-        <Routes>
-          <Route exact path="/" element={<Home />}></Route>
-          <Route exact path="/map" element={<Map />}></Route>
-          <Route exact path="/loginpage" element={<LoginPage />}></Route>
-        </Routes>
-      </BrowserRouter>
-    );
-  }
+export const Context = React.createContext();
+
+
+
+
+function App() {
+  
+const [loggedIn, setLoggedIn] = useState(false);
+  return (
+    
+    <BrowserRouter>
+    <Context.Provider value = {[loggedIn, setLoggedIn]}>
+      <Navbar></Navbar>
+      <Routes>
+        <Route exact path="/" element={<Home />}></Route>
+        <Route exact path="/map" element={<Map />}></Route>
+        <Route exact path="/loginpage" element={<LoginPage />}></Route>
+      </Routes>
+    </Context.Provider>
+  </BrowserRouter>
+  )
 }
+
+export default App

@@ -11,6 +11,8 @@ import { useState, useRef } from "react";
 import "../App.css";
 const center = { lat: 43.6532, lng: -79.347 };
 
+
+
 function Map() {
   // const[centre, setCentre] = useState(); SET CENTRE BASED ON BUTTON
   const { isLoaded } = useLoadScript({

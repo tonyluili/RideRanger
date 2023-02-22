@@ -39,8 +39,8 @@ function Navbar() {
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
+        
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
@@ -56,7 +56,7 @@ function Navbar() {
               textDecoration: "none",
             }}
           >
-            LOGO
+            🛴RIDE RANGER🛴
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
