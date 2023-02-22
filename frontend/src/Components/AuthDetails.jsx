@@ -34,4 +34,6 @@ function AuthDetails() {
   )}</div>
 }
 
+
+
 export default AuthDetails;
