@@ -1,5 +1,15 @@
 import React from "react";
 import LinkedList from "./LinkedList";
+import Button from "@mui/material/Button";
+import { useContext } from "react";
+import { Context } from "../App";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import Card from "@mui/material/Card";
 import {
   GoogleMap,
   useLoadScript,
@@ -10,8 +20,6 @@ import {
 import { useState, useRef } from "react";
 import "../App.css";
 const center = { lat: 43.6532, lng: -79.347 };
-
-
 
 function Map() {
   // const[centre, setCentre] = useState(); SET CENTRE BASED ON BUTTON
@@ -24,6 +32,12 @@ function Map() {
   const [directionsResponse, setDirectionsResponse] = useState(null);
   const [distance, setDistance] = useState("");
   const [duration, setDuration] = useState("");
+  const [loggedIn, setLoggedIn] = useContext(Context);
+  const [vehicle, setVehicle] = React.useState("");
+
+  const handleChange = (event) => {
+    setVehicle(event.target.value);
+  };
 
   const originRef = useRef();
 
@@ -60,51 +74,71 @@ function Map() {
 
   return (
     <div>
-      <div className="mapFunctions">
-        <button onClick={() => map.panTo(center)}>Align back to center</button>
-        <button onClick={calculateRoute}>Calculate Route</button>
-        <button onClick={clearRoute}>Clear Route</button>
-
-        <Autocomplete>
-          <input
-            type="text"
-            placeholder="Origin"
-            ref={originRef}
-            className="places"
-          />
-        </Autocomplete>
-        <Autocomplete>
-          <input
-            type="text"
-            placeholder="Destination"
-            ref={destinationRef}
-            className="places"
-          />
-        </Autocomplete>
-      </div>
-
-      <select>
-        <option value="">Ninebot Max</option>
-        <option value="">Onewheel</option>
-        <option value="">Electric Unicycle</option>
-      </select>
-
-      <div className="mapInfo">
-        <h2>Distance: {distance}</h2>
-        <h2>Duration: {duration}</h2>
-      </div>
-      <GoogleMap
-        zoom={15}
-        center={center}
-        mapContainerClassName="map-container"
-        mapTypeId="roadmap"
-        onLoad={(map) => setMap(map)}
-      >
-        <MarkerF position={center} />
-        {directionsResponse && (
-          <DirectionsRenderer directions={directionsResponse} />
-        )}
-      </GoogleMap>
+      {loggedIn ? (
+        <>
+          {" "}
+          <br />
+          <Card raised={true}>
+            <div className="mapFunctions">
+              <Button variant="contained" onClick={() => map.panTo(center)}>
+                Align back to center
+              </Button>
+              <Button variant="contained" onClick={calculateRoute}>
+                Calculate Route
+              </Button>
+              <Button variant="contained" onClick={clearRoute}>
+                Clear Route
+              </Button>
+            </div>
+            <div className="addressInfo">
+              <Autocomplete>
+                <input
+                  type="text"
+                  placeholder="Origin"
+                  ref={originRef}
+                  className="places"
+                />
+              </Autocomplete>
+              <Autocomplete>
+                <input
+                  type="text"
+                  placeholder="Destination"
+                  ref={destinationRef}
+                  className="places"
+                />
+              </Autocomplete>
+            </div>
+            <Box sx={{ minWidth: 30 }}>
+              <FormControl fullWidth>
+                <InputLabel>Vehicle</InputLabel>
+                <Select value={vehicle} label="Vehicle" onChange={handleChange}>
+                  <MenuItem value={10}>Ninebot Max Scooter</MenuItem>
+                  <MenuItem value={20}>OneWheel</MenuItem>
+                  <MenuItem value={30}>Electric Unicycle</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
+            <div className="mapInfo">
+              <Typography>Distance: {distance}</Typography>
+              <Typography>Duration: {duration}</Typography>
+            </div>
+          </Card>
+          <GoogleMap
+            zoom={15}
+            center={center}
+            mapContainerClassName="map-container"
+            mapTypeId="roadmap"
+            onLoad={(map) => setMap(map)}
+          >
+            <MarkerF position={center} />
+            {directionsResponse && (
+              <DirectionsRenderer directions={directionsResponse} />
+            )}
+          </GoogleMap>
+        </>
+      ) : (
+        <h1>Please Login to Access Maps</h1>
+      )}
     </div>
   );
 }

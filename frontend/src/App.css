@@ -8,12 +8,37 @@
   flex-direction: row;
 }
 
-.mapFunctions {
-  border: 0.2rem solid black;
+.addressInfo{
+  
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(130, 123, 123);
+}
+
+.places{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.signupinfo{
+  display: flex;
+  justify-content: center;
+}
+
+.authDetails{
+  display: flex;
+  justify-content: center;
+}
+
+.mapFunctions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -37,7 +62,15 @@
   text-decoration: none;
 }
 
+.mapInfo {
+}
+
 .homegreeting {
   text-align: center;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.loginpage{  
+  margin-left: 50%;
+  margin-right: 50%;
 }

@@ -2,6 +2,8 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import React, { useEffect, useState, useContext} from "react";
 import { auth } from "../firebase";
 import { Context } from "../App"
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 
 function AuthDetails() {
   const [authUser, setAuthUser] = useState(null);
@@ -28,14 +30,14 @@ function AuthDetails() {
         console.log("signout successful")
     }).catch(err => console.log(err))
   }
-  return <div> {authUser ? (
+  return <div className = "authDetails"> {authUser ? (
 
     <>
-      <p>{`Signed In as ${authUser.email}`}</p>
-      <button onClick = {userSignOut}>Sign Out</button>
+      <Typography>{`Signed In as ${authUser.email}`}</Typography>
+      <Button variant = "contained" onClick = {userSignOut}>Sign Out</Button>
     </>
   ) : (
-    <p>Signed Out</p>
+    <Typography>Signed Out</Typography>
   )}</div>
 }
 

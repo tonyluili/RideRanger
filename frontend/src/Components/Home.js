@@ -7,8 +7,7 @@ function Home() {
   return (
     <div>
       <h1 className="homegreeting">
-        Ride Ranger 🛴🗺️
-        {loggedIn ? "Signed In" : "Signed Out"}
+        {loggedIn ? "Ride Ranger 🛴🗺️" : "Please Login"}
       </h1>
     </div>
   );
