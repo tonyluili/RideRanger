@@ -20,10 +20,9 @@ import {
 } from "@react-google-maps/api";
 import { useState, useRef } from "react";
 import "../App.css";
-let center = { lat: 43.6532, lng: -79.347 };
 
 function Map() {
-  // const[centre, setCentre] = useState(); SET CENTRE BASED ON BUTTON
+  const[center, setCenter] = useState({ lat: 43.6532, lng: -79.347 });
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries: ["places"],
@@ -35,6 +34,8 @@ function Map() {
   const [duration, setDuration] = useState("");
   const [loggedIn, setLoggedIn] = useContext(Context);
   const [vehicle, setVehicle] = React.useState("");
+  const [vehicleDistance, setVehicleDistance] = useState(40)
+  const [colour, setColour] = useState("mapInfoGreen")
 
   const handleChange = (event) => {
     setVehicle(event.target.value);
@@ -63,6 +64,12 @@ function Map() {
     setDirectionsResponse(results);
     setDistance(results.routes[0].legs[0].distance.text);
     setDuration(results.routes[0].legs[0].duration.text);
+    if(vehicleDistance > distance){
+      setColour("mapInfoGreen")
+    }
+    else{
+      setColour("mapInfoRed")
+    }
   }
 
   function clearRoute() {
@@ -71,6 +78,16 @@ function Map() {
     setDuration("");
     originRef.current.value = "";
     destinationRef.current.value = "";
+  }
+
+  const handleClickScooter = () =>{
+    setVehicleDistance(40)
+  }
+  const handleClickEuc = () =>{
+    setVehicleDistance(80)
+  }
+  const handleClickOnewheel = () =>{
+    setVehicleDistance(20)
   }
 
   return (
@@ -113,14 +130,15 @@ function Map() {
               <FormControl fullWidth>
                 <InputLabel>Vehicle</InputLabel>
                 <Select value={vehicle} label="Vehicle" onChange={handleChange}>
-                  <MenuItem value={10}>Ninebot Max Scooter</MenuItem>
-                  <MenuItem value={20}>OneWheel</MenuItem>
-                  <MenuItem value={30}>Electric Unicycle</MenuItem>
+                  <MenuItem value={40} onClick = {handleClickScooter}>Ninebot Max Scooter </MenuItem>
+                  <MenuItem value={80} onClick = {handleClickEuc}>OneWheel</MenuItem>
+                  <MenuItem value={20} onClick = {handleClickOnewheel}>Electric Unicycle</MenuItem>
                 </Select>
               </FormControl>
             </Box>
             <div className="mapInfo">
-              <Typography>Distance: {distance}</Typography>
+              <Typography className = {colour}>Distance: {distance}</Typography>
+              <Typography>&nbsp;&nbsp;&nbsp;</Typography>
               <Typography>Duration: {duration}</Typography>
             </div>
           </Card>

@@ -83,8 +83,14 @@
   text-decoration: none;
 }
 
-.mapInfo {
+.mapInfoGreen {
+  color: green;
 }
+
+.mapInfoRed {
+  color: red;
+}
+
 
 .homegreeting {
   text-align: center;
@@ -94,4 +100,9 @@
 .loginpage{  
   margin-left: 50%;
   margin-right: 50%;
+}
+
+.vehicleDisplay{
+  height: 24rem;
+  width: 24rem;
 }

@@ -8,12 +8,33 @@ import Button from "@mui/material/Button";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import LinkedList from "./LinkedList";
-import VehicleImage from "./Images/ninebotmax.jpg";
+import NinebotImage from "./Images/ninebotmax.jpg";
+import EucImage from "./Images/kingsong-ks-16x.jpg";
+import OneWheelImage from "./Images/GT-OneWheel-GT.jpg"
 function Home() {
   const [loggedIn, setLoggedIn] = useContext(Context);
-  const [image, setImage] = useState("");
-
+  const [imageCounter, setImageCounter] = useState(0);
+  const vehicleImages = [NinebotImage, EucImage, OneWheelImage]
   //Add LinkedList here
+
+  const handleClickRight = () =>{
+    if(imageCounter + 1 < 3){
+      setImageCounter(imageCounter+1);
+    }
+    else{
+      setImageCounter(0);
+    }
+  }
+
+  const handleClickLeft = () =>{
+    if(imageCounter - 1 >= 0){
+      setImageCounter(imageCounter - 1);
+    }
+    else{
+      setImageCounter(2);
+    }
+  }
+
 
   return (
     <div>
@@ -29,12 +50,13 @@ function Home() {
             <Typography>
               Please browser our vast catalog of electric vehicles! ⚡
             </Typography>
+            <br />
             <div className="carousel">
-              <Button className="vehicleDisplayButton" variant="contained">
+              <Button className="vehicleDisplayButton" variant="contained" onClick = {handleClickLeft}>
                 <ArrowBackIosIcon />
               </Button>
-              <img className="vehicleDisplay" src={VehicleImage} alt="" />
-              <Button className="vehicleDisplayButton" variant="contained">
+              <img className="vehicleDisplay" src={vehicleImages[imageCounter]} alt="" />
+              <Button className="vehicleDisplayButton" variant="contained" onClick = {handleClickRight}>
                 <ArrowForwardIosIcon />
               </Button>
             </div>
