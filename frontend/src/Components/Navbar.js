@@ -12,7 +12,6 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
 
 const pages = ["Map🗺️", "Login👤", "About❓"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -94,7 +93,6 @@ function Navbar() {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
@@ -111,7 +109,7 @@ function Navbar() {
               textDecoration: "none",
             }}
           >
-            LOGO
+            🛴RIDE RANGER🛴
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             <Link className="navbarItem" to="/">

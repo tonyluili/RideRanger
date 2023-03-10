@@ -5,6 +5,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
+import { Link } from "react-router-dom";
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -46,6 +47,8 @@ const SignIn = () => {
             </Button>
           </div>
           <br />
+          <br />
+          <Typography textAlign="center">Need to Create an account? <Link to = "/SignUp">Sign Up</Link></Typography>
           <br />
         </Paper>
       </form>

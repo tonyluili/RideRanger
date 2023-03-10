@@ -10,6 +10,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Card from "@mui/material/Card";
+import { Link } from "react-router-dom";
 import {
   GoogleMap,
   useLoadScript,
@@ -19,7 +20,7 @@ import {
 } from "@react-google-maps/api";
 import { useState, useRef } from "react";
 import "../App.css";
-const center = { lat: 43.6532, lng: -79.347 };
+let center = { lat: 43.6532, lng: -79.347 };
 
 function Map() {
   // const[centre, setCentre] = useState(); SET CENTRE BASED ON BUTTON
@@ -137,7 +138,12 @@ function Map() {
           </GoogleMap>
         </>
       ) : (
-        <h1>Please Login to Access Maps</h1>
+        <Link to="/loginpage">
+          {" "}
+          <Typography justifyContent={center}>
+            Please Login to Access Maps
+          </Typography>
+        </Link>
       )}
     </div>
   );

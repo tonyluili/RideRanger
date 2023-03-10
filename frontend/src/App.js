@@ -4,29 +4,25 @@ import Home from "./Components/Home";
 import Navbar from "./Components/Navbar";
 import Map from "./Components/Map";
 import LoginPage from "./Components/LoginPage";
-import React, {useState } from "react";
-
+import React, { useState } from "react";
+import SignUp from "./Components/auth/SignUp";
 export const Context = React.createContext();
 
-
-
-
 function App() {
-  
-const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
   return (
-    
     <BrowserRouter>
-    <Context.Provider value = {[loggedIn, setLoggedIn]}>
-      <Navbar></Navbar>
-      <Routes>
-        <Route exact path="/" element={<Home />}></Route>
-        <Route exact path="/map" element={<Map />}></Route>
-        <Route exact path="/loginpage" element={<LoginPage />}></Route>
-      </Routes>
-    </Context.Provider>
-  </BrowserRouter>
-  )
+      <Context.Provider value={[loggedIn, setLoggedIn]}>
+        <Navbar></Navbar>
+        <Routes>
+          <Route exact path="/" element={<Home />}></Route>
+          <Route exact path="/map" element={<Map />}></Route>
+          <Route exact path="/loginpage" element={<LoginPage />}></Route>
+          <Route exact path="/signup" element={<SignUp />}></Route>
+        </Routes>
+      </Context.Provider>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;

@@ -35,6 +35,27 @@
   justify-content: center;
 }
 
+.vehicleDisplay{
+}
+
+.vehicleDisplayButton{
+}
+
+.carousel{
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  height: 24rem;
+  width: 30rem;
+  
+}
+
+.sign-in-container{
+  display: flex;
+  justify-content: center;
+}
+
 .mapFunctions {
   display: flex;
   align-items: center;
